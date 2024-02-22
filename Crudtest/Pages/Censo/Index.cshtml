@@ -1,0 +1,57 @@
+﻿@page
+@model Crudtest.Pages.Censo.IndexModel
+@{
+    var censos = Model.getCensos();
+
+    @functions{
+        public void redirect()
+        {
+            RedirectToPage("censo/insert");
+        }
+    }
+
+}
+
+
+    <h1>Tabla de Censos</h1>
+    <table id="tabla-datos">
+        <thead>
+            <tr>
+                <th>N° Censo</th>
+                <th>Fecha censo</th>
+                <th>Nit IPS</th>
+                <th>IPS</th>
+                <!-- Cambiar por valor de la tabla sucursal -->
+                <th>Sucursal</th>
+                <th>Tipo identificacion</th>
+                <th>Numero de identificacion</th>
+                <th>Apellidos</th>
+                <th>Nombres</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var property in @censos)
+        {
+            <tr>
+                <td>@property.id_censo</td>
+                <td>@property.fecha_recepcion_censo.ToString("yyyy-MM-dd")</td>
+                <td>@property.nit_ips</td>
+                <td>@property.ips_primaria</td>
+                <td>@property.sucursal</td>
+                <td>@property.tipo_identifi_afiliado</td>
+                <td>@property.num_identifi_afil</td>
+                <td>@property.apellidos</td>
+                <td>@property.nombres</td>
+                <td>
+                    <button class="btn btn-outline-warning" onclick="">Editar</button>
+                    <button class="btn btn-outline-danger" onclick="">Eliminar</button>
+                </td>
+            </tr>
+        }
+        
+        </tbody>
+    </table>
+    <br>
+    <button class="btn btn-outline-success" onclick="">Agregar nuevo</button>
+
